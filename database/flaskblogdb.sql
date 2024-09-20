@@ -77,25 +77,204 @@ status ENUM('on', 'off', 'del') DEFAULT 'on'
 -- Populando tabelas com dados fake --
 -- -------------------------------- --
 -- Insere dados na tabela 'staff'
-INSERT INTO staff(
-	emp_name, emp_email, emp_password,
-    emp_image, emp_birth, emp_type,
+INSERT INTO staff (
+	emp_name,
+    emp_email,
+    emp_password,
+    emp_image,
+    emp_birth, 
     emp_description
 ) VALUES(
-	'Natalia Salatiel',
-    'natalia@salatiel.com',
-    -- Senha inserida será criptografada
-    SHA1('senha123'),
-    'https://randomuser.me/api/portraits/lego/1.jpg',
-    '2000-04-01',
-    'author',
-    'Programadora, desenvolvedora.'
+	'Lucas Oliveira',
+    'lucas@oliveira.com',
+    SHA1('Senha456'),
+    'https://randomuser.me/api/portraits/lego/2.jpg',
+    '1995-07-15',
+    'Designer gráfico e criador de conteúdo.'
+), (
+	'Aline Costa',
+    'aline@costa.com',
+    SHA1('Senha789'),
+    'https://randomuser.me/api/portraits/lego/3.jpg',
+    '1992-11-30',
+    'Gerente de projetos e especialista em Agile.'
+), (
+	'Ricardo Almeida',
+    'ricardo@almeida.com',
+    SHA1('Senha321'),
+    'https://randomuser.me/api/portraits/lego/4.jpg',
+    '1988-01-20',
+    'Analista de sistemas com foco em segurança da informação.'
+), (
+	'Julia Santos',
+    'julia@santos.com',
+    SHA1('Senha654'),
+    'https://randomuser.me/api/portraits/lego/5.jpg',
+    '1996-05-12',
+    'Desenvolvedora full-stack e entusiasta de tecnologia.'
+), (
+	'Felipe Martins',
+    'felipe@martins.com',
+    SHA1('Senha987'),
+    'https://randomuser.me/api/portraits/lego/6.jpg',
+    '1990-09-25',
+    'Especialista em marketing digital e SEO.'
 );
 
--- Lê os dados/ lista o usuário cadastrado
+-- Atualiza o type do staff
+UPDATE `flaskblogdb`.`staff` SET `emp_type` = 'admin' WHERE (`emp_id` = '1');
+UPDATE `flaskblogdb`.`staff` SET `emp_type` = 'author' WHERE (`emp_id` = '2');
+UPDATE `flaskblogdb`.`staff` SET `emp_type` = 'author' WHERE (`emp_id` = '4');
+
+
+-- Insere dados na tabela 'article' --
+INSERT INTO article(
+	art_author, 
+    art_title,
+    art_resume,
+    art_thumbnail,
+    art_content
+) VALUES (
+-- 'emp_id' de um staff existente --
+	'2',
+    'Primeiro artigo',
+    -- Deixe os mesmos valores para todos os outros artigos --
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    'https://picsum.photos/300',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quidem voluptatibus provident velit dolorum beatae, rem qui amet hic officia non dolores explicabo voluptas cupiditate sapiente quibusdam esse debitis laborum!</p>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam veritatis, quaerat quibusdam voluptate, consequuntur est impedit deleniti rem doloribus in fuga, incidunt quidem veniam facere perferendis aspernatur nulla? Consectetur, voluptatem.</p>
+<img src="https://picsum.photos/200" alt="imagem aleatória">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, eum. Velit sapiente earum officiis voluptatum. Quibusdam neque iste harum saepe voluptas accusantium incidunt reprehenderit, necessitatibus sed debitis porro, molestiae consequuntur?</p>
+<h4>Links:</h4>
+<ul>
+    <li><a href="https://www.linkedin.com/in/natalia-salatiel-desenvolvedora-web">Meu Linkedin</a></li>
+    <li><a href="https://github.com/nat-salatiel">Meu Github</a></li>
+</ul>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae autem minima maxime aut sit quis repellat omnis, quo aliquid minus consequatur saepe, quas quam porro officiis perferendis facere enim perspiciatis!</p>'
+), (
+-- 'emp_id' de um staff existente --
+	'1',
+    'Segundo artigo',
+    -- Deixe os mesmos valores para todos os outros artigos --
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    'https://picsum.photos/300',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quidem voluptatibus provident velit dolorum beatae, rem qui amet hic officia non dolores explicabo voluptas cupiditate sapiente quibusdam esse debitis laborum!</p>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam veritatis, quaerat quibusdam voluptate, consequuntur est impedit deleniti rem doloribus in fuga, incidunt quidem veniam facere perferendis aspernatur nulla? Consectetur, voluptatem.</p>
+<img src="https://picsum.photos/200" alt="imagem aleatória">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, eum. Velit sapiente earum officiis voluptatum. Quibusdam neque iste harum saepe voluptas accusantium incidunt reprehenderit, necessitatibus sed debitis porro, molestiae consequuntur?</p>
+<h4>Links:</h4>
+<ul>
+    <li><a href="https://www.linkedin.com/in/natalia-salatiel-desenvolvedora-web">Meu Linkedin</a></li>
+    <li><a href="https://github.com/nat-salatiel">Meu Github</a></li>
+</ul>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae autem minima maxime aut sit quis repellat omnis, quo aliquid minus consequatur saepe, quas quam porro officiis perferendis facere enim perspiciatis!</p>'
+), (
+-- 'emp_id' de um staff existente --
+	'3',
+    'Terceiro artigo',
+    -- Deixe os mesmos valores para todos os outros artigos --
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    'https://picsum.photos/300',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quidem voluptatibus provident velit dolorum beatae, rem qui amet hic officia non dolores explicabo voluptas cupiditate sapiente quibusdam esse debitis laborum!</p>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam veritatis, quaerat quibusdam voluptate, consequuntur est impedit deleniti rem doloribus in fuga, incidunt quidem veniam facere perferendis aspernatur nulla? Consectetur, voluptatem.</p>
+<img src="https://picsum.photos/200" alt="imagem aleatória">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, eum. Velit sapiente earum officiis voluptatum. Quibusdam neque iste harum saepe voluptas accusantium incidunt reprehenderit, necessitatibus sed debitis porro, molestiae consequuntur?</p>
+<h4>Links:</h4>
+<ul>
+    <li><a href="https://www.linkedin.com/in/natalia-salatiel-desenvolvedora-web">Meu Linkedin</a></li>
+    <li><a href="https://github.com/nat-salatiel">Meu Github</a></li>
+</ul>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae autem minima maxime aut sit quis repellat omnis, quo aliquid minus consequatur saepe, quas quam porro officiis perferendis facere enim perspiciatis!</p>'
+), (
+-- 'emp_id' de um staff existente --
+	'4',
+    'Quarto artigo',
+    -- Deixe os mesmos valores para todos os outros artigos --
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    'https://picsum.photos/300',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quidem voluptatibus provident velit dolorum beatae, rem qui amet hic officia non dolores explicabo voluptas cupiditate sapiente quibusdam esse debitis laborum!</p>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam veritatis, quaerat quibusdam voluptate, consequuntur est impedit deleniti rem doloribus in fuga, incidunt quidem veniam facere perferendis aspernatur nulla? Consectetur, voluptatem.</p>
+<img src="https://picsum.photos/200" alt="imagem aleatória">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, eum. Velit sapiente earum officiis voluptatum. Quibusdam neque iste harum saepe voluptas accusantium incidunt reprehenderit, necessitatibus sed debitis porro, molestiae consequuntur?</p>
+<h4>Links:</h4>
+<ul>
+    <li><a href="https://www.linkedin.com/in/natalia-salatiel-desenvolvedora-web">Meu Linkedin</a></li>
+    <li><a href="https://github.com/nat-salatiel">Meu Github</a></li>
+</ul>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae autem minima maxime aut sit quis repellat omnis, quo aliquid minus consequatur saepe, quas quam porro officiis perferendis facere enim perspiciatis!</p>'
+), (
+-- 'emp_id' de um staff existente --
+	'5',
+    'Quinto artigo',
+    -- Deixe os mesmos valores para todos os outros artigos --
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    'https://picsum.photos/300',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quidem voluptatibus provident velit dolorum beatae, rem qui amet hic officia non dolores explicabo voluptas cupiditate sapiente quibusdam esse debitis laborum!</p>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam veritatis, quaerat quibusdam voluptate, consequuntur est impedit deleniti rem doloribus in fuga, incidunt quidem veniam facere perferendis aspernatur nulla? Consectetur, voluptatem.</p>
+<img src="https://picsum.photos/200" alt="imagem aleatória">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, eum. Velit sapiente earum officiis voluptatum. Quibusdam neque iste harum saepe voluptas accusantium incidunt reprehenderit, necessitatibus sed debitis porro, molestiae consequuntur?</p>
+<h4>Links:</h4>
+<ul>
+    <li><a href="https://www.linkedin.com/in/natalia-salatiel-desenvolvedora-web">Meu Linkedin</a></li>
+    <li><a href="https://github.com/nat-salatiel">Meu Github</a></li>
+</ul>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae autem minima maxime aut sit quis repellat omnis, quo aliquid minus consequatur saepe, quas quam porro officiis perferendis facere enim perspiciatis!</p>'
+) ;
+
+
+-- Insere dados na tabela 'article' --
+INSERT INTO comment(
+	-- Inserir um 'art_id' existente --
+    com_article,
+    com_author_name, 
+    com_author_email,
+    com_comment
+) VALUES(
+	'5',
+	'João Pedro',
+	'joao@pedro.com',
+	'Ótimo artigo! Muito informativo.'
+), (
+	'4',
+	'Larissa Gomes',
+	'larissa@gomes.com',
+	'Adorei as dicas, vou aplicar com certeza!'
+), (
+	'3',
+	'Ricardo Lima',
+	'ricardo@lima.com',
+	'Esse tema é muito relevante, obrigado por compartilhar!'
+), (
+	'2',
+	'Fernanda Costa',
+	'fernanda@costa.com',
+	'Faltou um pouco mais de profundidade, mas bom conteúdo!'
+), (
+	'1',
+	'Pedro Alves',
+	'pedro@alves.com',
+	'Muito bem escrito! Estou ansioso para mais posts.'
+);
+
+-- Visualizando as informações inseridas --
+
+-- Mostra registros da tabela staff --
 SELECT * FROM staff;
+SELECT * FROM staff WHERE emp_name LIKE '%Lucas%';
 
+-- Ordena em forma crescente (ASC) ou decrescente(DESC)
+SELECT * FROM staff ORDER BY emp_name DESC;
 
+-- Mostra registros da tabela article --
+SELECT * FROM article;
+
+-- Mostra registros da tabela comment --
+SELECT * FROM comment;
 
 
 
