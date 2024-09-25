@@ -1,106 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/layout.css" />
-    <title>Layout</title>
-  </head>
-  <body>
-    <div id="wrap">
-      <header>
-        <div>
-          <a href="">
-            <i class="fa-solid fa-camera-retro fa-fw fa-4x"></i>
-          </a>
-          <h1>FlaskBlog</h1>
-        </div>
-        <form action="search.html" method="get">
-          <input type="search" name="q" placeholder="Procurar" />
-          <button type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>
-      </header>
-      <nav>
-        <a href="/">
-          <i class="fa-solid fa-house fa-fw"></i>
-          <span>Início</span>
-        </a>
-        <a href="/contacts">
-          <i class="fa-solid fa-comments fa-fw"></i>
-          <span>Contatos</span>
-        </a>
-        <a href="/">
-          <i class="fa-solid fa-circle-info fa-fw"></i>
-          <span>Sobre</span>
-        </a>
-      </nav>
-      <main>
-        <article>
-            <!-- Conteúdo fake de teste -->
-          <h2>Título do Article</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores
-            quidem voluptatibus provident velit dolorum beatae, rem qui amet hic
-            officia non dolores explicabo voluptas cupiditate sapiente quibusdam
-            esse debitis laborum!
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam
-            veritatis, quaerat quibusdam voluptate, consequuntur est impedit
-            deleniti rem doloribus in fuga, incidunt quidem veniam facere
-            perferendis aspernatur nulla? Consectetur, voluptatem.
-          </p>
-          <img src="https://picsum.photos/200" alt="imagem aleatória" />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
-            eum. Velit sapiente earum officiis voluptatum. Quibusdam neque iste
-            harum saepe voluptas accusantium incidunt reprehenderit,
-            necessitatibus sed debitis porro, molestiae consequuntur?
-          </p>
-          <h4>Links:</h4>
-          <ul>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/natalia-salatiel-desenvolvedora-web"
-                >Meu Linkedin</a
-              >
-            </li>
-            <li><a href="https://github.com/nat-salatiel">Meu Github</a></li>
-          </ul>
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-            autem minima maxime aut sit quis repellat omnis, quo aliquid minus
-            consequatur saepe, quas quam porro officiis perferendis facere enim
-            perspiciatis!
-          </p>
-        </article>
-        <aside>
-             <!-- Conteúdo fake de teste -->
-          <h3>Título do aside</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
-            eum. Velit sapiente earum officiis voluptatum.
-          </p>
-        </aside>
-      </main>
-      <footer>
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-        </a>
-        <div>
-            <i class="fa-regular fa-copyright fa-fw fa-flip-horizontal"></i> Copyleft 2024 Joca da Silva
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    {# Verifica se solicitou a carga do CSS da página #}
+    {% if page.css %}
+    <link rel="stylesheet" href="/static/css/{{ page.css }}">
+    {% endif %}
+    <title>{{ page.title }}</title>
+</head>
+
+<body>
+
+    <div id="wrap">
+
+        <header>
             <div>
-                <a href="/contacts">Faça contato</a> &nbsp;|&nbsp;
-                <a href="/policies">Políticas de privacidade</a>
+                <a href="/"><i class="fa-solid fa-camera-retro fa-fw fa-4x"></i></a>
+                <h1>FlaskBlog</h1>
             </div>
-        </div>
-        <a href="#wrap">
-            <i class="fa-solid fa-circle-up fa-fw"></i>
-        </a>
-      </footer>
+            <form action="search.html" method="get">
+                <input type="search" name="q" placeholder="Procurar">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass fa-fw"></i></button>
+            </form>
+        </header>
+
+        <nav>
+            <a href="/">
+                <i class="fa-solid fa-house fa-fw"></i>
+                <span>Início</span>
+            </a>
+            <a href="/contacts">
+                <i class="fa-solid fa-comments fa-fw"></i>
+                <span>Contatos</span>
+            </a>
+            <a href="/about">
+                <i class="fa-solid fa-circle-info fa-fw"></i>
+                <span>Sobre</span>
+            </a>
+        </nav>
+
+        <main>
+
+            <article>{% block article %}{% endblock%}</article>
+            
+            <aside>{% block aside %}{%endblock %}</aside>
+
+        </main>
+
+        <footer>
+            <a href="/">
+                <i class="fa-solid fa-house fa-fw"></i>
+            </a>
+            <div>
+                <i class="fa-regular fa-copyright fa-fw fa-flip-horizontal"></i> Copyleft 2024 Joca da Silva
+                <small>
+                    <a href="/contacts">Faça contato</a> &nbsp;|&nbsp;
+                    <a href="/policies">Políticas de privacidade</a>
+                </small>
+            </div>
+            <a href="#wrap">
+                <i class="fa-solid fa-circle-up fa-fw"></i>
+            </a>
+        </footer>
+
     </div>
-  </body>
+
+    <script src="/static/js/layout.js"></script>
+
+    {# Verifica se solicitou a carga do JavaScript da página #}
+    {% if page.js %}
+    <script src="/static/js/{{ page.js }}"></script>
+    {% endif %}
+
+</body>
+
 </html>
