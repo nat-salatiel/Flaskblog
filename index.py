@@ -1,8 +1,11 @@
 # Importa a classe Flask do módulo flask
 from flask import Flask, render_template
-
-# Importa a biblioteca de acesso ao MySQL
+# Importa a bilbioteca de acesso ao MySQL
 from flask_mysqldb import MySQL, MySQLdb
+# Importa todas funções dos artigos de `db_articles`
+from functions.db_articles import *
+# Importa a função get_all dos artigos de `db_articles`
+from functions.db_articles import get_all
 
 # Cria uma instância da aplicação Flask
 app = Flask(__name__)
@@ -24,30 +27,10 @@ mysql = MySQL(app)
 @app.route('/')  # Define a rota para a URL raiz ('/')
 def home():  # Função executada quando '/' é acessado
 
-    sql = """
-       -- Recebe a lista de artigos do banco de dados:
-      -- A) Somente os campos necesários
-      -- B) Somente artigos online
-      -- C) Somente artigos do presente e passado (agendamento)
-      -- D) Ordenados pela data, com mais recentes primeiro
-
-        -- A --
-        SELECT art_id, art_title, art_resume, art_thumbnail
-        FROM `article` 
-        -- B --
-        WHERE art_status = 'on'
-        -- C --
-        AND art_date <= NOW()
-        -- D --
-        ORDER BY art_date DESC;
-    """
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cur.execute(sql)
-    articles = cur.fetchall()
-    cur.close()
+    articles = get_all(mysql)
 
     # Debug: mostra o resultado no console
-    # print('\n \n \n',articles,'\n \n \n')
+    # print('\n\n\n',articles, '\n\n\n')
 
     # Variável da página HTML
     toPage = {
@@ -68,8 +51,13 @@ def home():  # Função executada quando '/' é acessado
 # Rota que exibe o artigo completo
 @app.route('/view/<artid>')
 def view(artid):
-    return artid
 
+    toPage = {
+        'title': '',
+        'css': 'view.css'
+    }
+
+    return render_template('view.html', page=toPage)
 
 @app.route('/contacts')  # Define a rota para a URL '/contatos'
 def contacts():  # Função executada quando '/contacts' é acessado
@@ -82,18 +70,6 @@ def contacts():  # Função executada quando '/contacts' é acessado
 
     # Retorna uma mensagem simples
     return render_template('contacts.html', page=toPage)
-
-
-@app.route('/about')  # Define a rota para a URL '/about'
-def about():  # Função executada quando '/about' é acessado
-
-    # Variável da página HTML
-    toPage = {
-        'title': 'Sobre',
-        'css': 'about.css'
-    }
-    # Retorna uma mensagem simples
-    return render_template('about.html', page=toPage)
 
 
 # Verifica se o script está sendo executado diretamente
