@@ -1,1 +1,9 @@
 /* CSS de view.html */
+/* CSS de view.html */
+
+.aside-author img {
+    width: 100%;
+    max-width: 280px;
+    display: block;
+    margin: auto;
+}

@@ -82,6 +82,9 @@ def view(artid):
         case _:
             article['sta_typebr'] = 'Colaborador'
 
+    # Primeiro nome do autor
+    article['sta_firstname'] = article['sta_name'].split()[0]
+
     toPage = {
         'title': '',
         'css': 'view.css',
