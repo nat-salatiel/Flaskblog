@@ -23,8 +23,8 @@
                 <a href="/"><i class="fa-solid fa-camera-retro fa-fw fa-4x"></i></a>
                 <h1>FlaskBlog</h1>
             </div>
-            <form action="search.html" method="get">
-                <input type="search" name="q" placeholder="Procurar">
+            <form action="/search" method="get">
+                <input type="search" name="q" placeholder="Procurar" value="{{ page.query }}">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass fa-fw"></i></button>
             </form>
         </header>
