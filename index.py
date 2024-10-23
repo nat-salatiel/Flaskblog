@@ -281,20 +281,20 @@ def comment():
 @app.route('/about')
 def about():
     toPage = {
-        'title': 'Sobre Nós',
-        'css': 'home.css'  # Adicione seu arquivo CSS se necessário
+        'title': 'Sobre',
+        'css': 'about.css'
     }
     return render_template('/about.html', page=toPage)
-   
+
 
 @app.route('/policies')
 def policies():
     toPage = {
-        'title': 'Políticas de privacidade',
-        'css': 'home.css'  # Adicione seu arquivo CSS se necessário
+        'title': 'Políticas de Privacidade',
+        'css': 'about.css'
     }
     return render_template('/policies.html', page=toPage)
-     
+
 
 # Verifica se o script está sendo executado diretamente
 if __name__ == '__main__':
