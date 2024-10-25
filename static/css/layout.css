@@ -311,6 +311,7 @@ button {
     align-items: center;
     cursor: pointer;
     font-size: 90%;
+    margin-bottom: .5rem;
 }
 
 .aside-article img {
@@ -344,4 +345,12 @@ button {
     .aside-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.banner {
+    display: block;
+    margin: auto;
+    border-radius: .3rem;
+    width: 100%;
+    max-width: 400px;
 }

@@ -172,7 +172,25 @@ def search_articles(mysql, query, limit=0):
     # Monta o termo de busca para LIKE
     like_term = f'%{query}%'
     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cur.execute(sql, (like_term, like_term,like_term,))
+    cur.execute(sql, (like_term, like_term, like_term,))
+    articles = cur.fetchall()
+    cur.close()
+
+    return articles
+
+
+def get_random(mysql, limit=4): # Obtém artigos aleatórios
+
+    sql = '''
+        SELECT art_id, art_title, art_thumbnail
+        FROM article
+        WHERE art_status = 'on'
+            AND art_date <= NOW()
+        ORDER BY RAND()
+        LIMIT %s
+    '''
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cur.execute(sql, (limit,))
     articles = cur.fetchall()
     cur.close()
 
